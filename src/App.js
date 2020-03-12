@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 import {
@@ -12,12 +12,22 @@ import Nav from "./components/nav";
 import Maincomponent from './components/main-component';
 
 
+import Usercontext from './components/user-context';
 
 
+
+const UserContextProvider = (props) => {
+  return (
+    <Usercontext.Provider value={props.value}>
+      {props.children}
+    </Usercontext.Provider>
+  )
+}
 
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  const [posts, addPost] = useState([]);
+  const [postListing, setPost] = useState({ postList: [] });
 
   // const users = {
   //   1: "Pramod Gurav",
@@ -27,12 +37,9 @@ function App() {
   //   5: "Dhruv Dvivedi"
   // };
 
-  const UserContext = React.createContext({
-    name: 'Pramod Gurav',
-    "id":1
-  });
+  const UserContext = React.createContext();
 
- 
+
 
   useEffect(() => {
 
@@ -52,15 +59,35 @@ function App() {
     )
   }
 
+
+  function onAddPost(postdata) {
+    console.log("in add post")
+    console.log(postdata);
+    let postedData = {
+      "id": +new Date,
+      "title": postdata.title,
+      "body": postdata.body
+    }
+    setPost({
+      posts: [postedData, ...postListing.postList] //speread operator copying todolist
+    })
+
+  }
+
+  const methods = {
+    todoListDataFromApp: [],
+    onAddPost: onAddPost
+  }
+
   return (
     <React.Fragment>
-       <UserContext.Provider value={{id:"1"}}>
-      <Router>
-        <div className="container"></div>
-        <Nav />
-        <Route exact path="/" render={loadPost} />
-      </Router>
-      </UserContext.Provider>
+      <UserContextProvider value={methods}>
+        <Router>
+          <div className="container"></div>
+          <Nav />
+          <Route exact path="/" render={loadPost} />
+        </Router>
+      </UserContextProvider>
     </React.Fragment>
   );
 }

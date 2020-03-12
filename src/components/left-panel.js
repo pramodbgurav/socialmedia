@@ -7,20 +7,20 @@ export default function Leftpanel(){
 	 
 return(
     <div className="col-lg-3 col-md-4 pd-left-none no-pd">        
-        <div class="main-left-sidebar no-margin">
-									<div class="user-data full-width">
-										<div class="user-profile">
-											<div class="username-dt">
-												<div class="usr-pic">
+        <div className="main-left-sidebar no-margin">
+									<div className="user-data full-width">
+										<div className="user-profile">
+											<div className="username-dt">
+												<div className="usr-pic">
 													<img src="images/user.png" alt=""/>
 												</div>
 											</div>
-											<div class="user-specs">
+											<div className="user-specs">
 												<h3>Pramod Gurav</h3>
 												<span>Developer</span>
 											</div>
 										</div>
-										<ul class="user-fw-status">
+										<ul className="user-fw-status">
 											<li>
 												<h4>Posts</h4>
 												<span>34</span>

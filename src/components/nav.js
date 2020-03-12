@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 
 
 export default function Nav() {
@@ -122,7 +121,7 @@ export default function Nav() {
                                     <li>
                                         <div className="fgt-sec">
                                             <input type="radio" name="cc" id="c5" />
-                                            <label for="c5">
+                                            <label htmlFor="c5">
                                                 <span></span>
                                             </label>
                                             <small>Online</small>
@@ -131,7 +130,7 @@ export default function Nav() {
                                     <li>
                                         <div className="fgt-sec">
                                             <input type="radio" name="cc" id="c6" />
-                                            <label for="c6">
+                                            <label htmlFor="c6">
                                                 <span></span>
                                             </label>
                                             <small>Offline</small>

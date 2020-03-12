@@ -9,7 +9,7 @@ export default function Centerpanel({allPosts}) {
     return (
         <React.Fragment>
         <div className="col-lg-6 col-md-8 no-pd">
-            <div class="post-topbar">
+            <div className="post-topbar">
                 <Post></Post>
             </div>
 
