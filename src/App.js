@@ -26,7 +26,7 @@ const UserContextProvider = (props) => {
 
 
 function App() {
-  const [posts, addPost] = useState([]);
+  const [posts, setPosts] = useState([]);
   const [postListing, setPost] = useState({ postList: [] });
 
   // const users = {
@@ -64,13 +64,13 @@ function App() {
     console.log("in add post")
     console.log(postdata);
     let postedData = {
-      "id": +new Date,
+      "id": +new Date(),
       "title": postdata.title,
       "body": postdata.body
+
     }
-    setPost({
-      posts: [postedData, ...postListing.postList] //speread operator copying todolist
-    })
+    setPosts([postedData, ...posts] //speread operator copying todolist
+    )
 
   }
 
