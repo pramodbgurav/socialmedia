@@ -1,27 +1,27 @@
-import React, { useState } from 'react'
-export default function AllComments() {
+import React, { useContext } from 'react';
+
+import UserContext from './Context';
+import EachComment from './Comment'
 
 
-    const [comment, addComment] = useState(
-        {
-            body: ""
-        }
-    );
-    function handleChange(evt) {
 
-        const value = evt.target.value;
-        addComment({
-            ...comment,
-            [evt.target.name]: value
-        });
 
-        return (
-            <div>
-                <textarea name="body" value={comment.body} onChange={handleChange}>
+export default function AllComments({ postId }) {
+    const { comments } = useContext(UserContext);
 
-                </textarea>
-            </div>
-        )
+    let vComments = comments.filter((comment) => {
+        return comment.post_id == postId;
+    })
 
-    }
+    return (
+        vComments.map(c => {
+            return (
+                < EachComment comment={c} />
+
+            )
+        })
+
+
+    )
+
 }

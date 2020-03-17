@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
 import Post from './post';
 import AllComments from './allComments';
+import NewComment from './newComment';
 // import { NavLink } from 'react-router-dom';
 
 
 export default function EachPost({ post }) {
     const [comment, showComments] = useState(false);
 
-    const displayComments = () => {
-        if (comment) {
-            return <AllComments />
-        }
-    }
     const setComment = () => {
         showComments(!comment)
+    }
+
+    const displayComment = () => {
+        if (comment) {
+            return <div>
+                <NewComment postId={post.id} />
+                <AllComments postId={post.id} />
+            </div>
+        }
     }
     return (
         <div class="post-bar">
@@ -36,13 +41,6 @@ export default function EachPost({ post }) {
             </div>
             <div class="job_descp">
                 <p>{post.body}</p>
-                <ul class="skill-tags">
-                    <li><a href="#" title="">HTML</a></li>
-                    <li><a href="#" title="">PHP</a></li>
-                    <li><a href="#" title="">CSS</a></li>
-                    <li><a href="#" title="">Javascript</a></li>
-                    <li><a href="#" title="">Wordpress</a></li>
-                </ul>
             </div>
             <div class="job-status-bar">
 
@@ -53,9 +51,8 @@ export default function EachPost({ post }) {
 
                 </ul>
             </div>
-            <div>
-                {displayComments}
-            </div>
+
+            {displayComment()}
         </div >
 
     )
