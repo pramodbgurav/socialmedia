@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-import {
+import
+{
   BrowserRouter as Router,
   Route,
   NavLink
@@ -27,10 +28,10 @@ const DEFAULT_STATE = {
 }
 
 
-function App() {
-  const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState(DEFAULT_STATE.comments);
-  const [postListing, setPost] = useState({ postList: [] });
+function App ()
+{
+  const [ posts, setPosts ] = useState([]);
+  const [ comments, setComments ] = useState(DEFAULT_STATE.comments);
 
   // const users = {
   //   1: "Pramod Gurav",
@@ -44,7 +45,8 @@ function App() {
 
 
 
-  useEffect(() => {
+  useEffect(() =>
+  {
 
     fetch('https://jsonplaceholder.typicode.com/posts')
       .then(response => response.json())
@@ -52,18 +54,20 @@ function App() {
 
   }, [])
 
-  function loadPost() {
+  function loadPost ()
+  {
 
     return (
 
       <main>
-        <Maincomponent allPosts={posts}></Maincomponent>
+        <Maincomponent allPosts={ posts }></Maincomponent>
       </main>
     )
   }
 
 
-  function onAddPost(postdata) {
+  function onAddPost (postdata)
+  {
     console.log("in add post")
     console.log(postdata);
     let postedData = {
@@ -72,37 +76,38 @@ function App() {
       "body": postdata.body
 
     }
-    setPost([postedData, ...posts] //speread operator copying todolist
+    setPosts([ postedData, ...posts ] //speread operator copying todolist
     )
 
   }
 
-  function onFormSubmitComment(newComment) {
+  function onFormSubmitComment (newComment)
+  {
     console.log(newComment);
     let postedData = {
       "id": +new Date(),
       "body": newComment.body,
       "post_id": newComment.post_id
     }
-    setComments([postedData, ...comments] //speread operator copying todolist
+    setComments([ postedData, ...comments ] //speread operator copying todolist
     )
 
   }
 
   const methods = {
     todoListDataFromApp: [],
-    onAddPost: onAddPost,
+    onAddPost,
     comments: comments,
     onFormSubmitComment
   }
 
   return (
     <React.Fragment>
-      <UserContext.Provider value={methods}>
+      <UserContext.Provider value={ methods }>
         <Router>
           <div className="container"></div>
           <Nav />
-          <Route exact path="/" render={loadPost} />
+          <Route exact path="/" render={ loadPost } />
         </Router>
       </UserContext.Provider>
     </React.Fragment>
