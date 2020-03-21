@@ -6,17 +6,20 @@ import EachComment from './Comment'
 
 
 
-export default function AllComments({ postId }) {
+export default function AllComments ({ postId })
+{
     const { comments } = useContext(UserContext);
 
-    let vComments = comments.filter((comment) => {
-        return comment.post_id == postId;
+    let vComments = comments.filter((comment) =>
+    {
+        return comment.postId == postId;
     })
 
     return (
-        vComments.map(c => {
+        vComments.map(c =>
+        {
             return (
-                < EachComment comment={c} />
+                < EachComment comment={ c } />
 
             )
         })

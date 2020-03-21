@@ -18,21 +18,12 @@ import UserContext from './components/Context';
 
 
 
-const DEFAULT_STATE = {
-  comments: [
-    { id: 1, post_id: 1, title: "comment 1", body: "comment 1 goes here" },
-    { id: 2, post_id: 1, title: "comment 2", body: "comment 2 goes here" },
-    { id: 3, post_id: 1, title: "comment 3", body: "comment 3 goes here" },
-    { id: 4, post_id: 2, title: "comment 4", body: "comment 4 goes here" }
-  ]
-}
-
-
 function App ()
 {
   const [ posts, setPosts ] = useState([]);
-  const [ comments, setComments ] = useState(DEFAULT_STATE.comments);
-
+  const [ postCount, setPostCount ] = useState(0);
+  const [ comments, setComments ] = useState([]);
+  const [ commentCount, setCommentsCount ] = useState(0)
   // const users = {
   //   1: "Pramod Gurav",
   //   2: "Sandeep Hirwale",
@@ -52,15 +43,27 @@ function App ()
       .then(response => response.json())
       .then(data => setPosts(data))
 
+
+  }, [])
+
+  useEffect(() =>
+  {
+
+    fetch('https://jsonplaceholder.typicode.com/comments')
+      .then(response => response.json())
+      .then(data => setComments(data))
+
+
   }, [])
 
   function loadPost ()
   {
-
+    setPostCount(posts.length)
+    setCommentsCount(comments.length)
     return (
 
       <main>
-        <Maincomponent allPosts={ posts }></Maincomponent>
+        <Maincomponent allPosts={ posts } postCount={ postCount }></Maincomponent>
       </main>
     )
   }
@@ -78,6 +81,7 @@ function App ()
     }
     setPosts([ postedData, ...posts ] //speread operator copying todolist
     )
+    setPostCount(postCount + 1);
 
   }
 
@@ -87,10 +91,11 @@ function App ()
     let postedData = {
       "id": +new Date(),
       "body": newComment.body,
-      "post_id": newComment.post_id
+      "postId": newComment.postId
     }
     setComments([ postedData, ...comments ] //speread operator copying todolist
     )
+    setCommentsCount(commentCount + 1)
 
   }
 
@@ -98,6 +103,8 @@ function App ()
     todoListDataFromApp: [],
     onAddPost,
     comments: comments,
+    postCount: postCount,
+    commentCount: commentCount,
     onFormSubmitComment
   }
 

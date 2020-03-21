@@ -1,14 +1,17 @@
 import React, { useContext, useState } from 'react'
 import UserContext from './Context';
-export default function NewComment({ postId }) {
-    const [newComment, setComment] = useState({ id: "", body: "", post_id: postId });
+export default function NewComment ({ postId })
+{
+    const [ newComment, setComment ] = useState({ id: "", body: "", postId: postId });
     const { onFormSubmitComment } = useContext(UserContext);
-    const onSubmitComment = (e) => {
+    const onSubmitComment = (e) =>
+    {
         e.preventDefault();
-        newComment.post_id = postId;
+        newComment.postId = postId;
         onFormSubmitComment(newComment);
     }
-    const handleChange = (e) => {
+    const handleChange = (e) =>
+    {
         setComment({ body: e.target.value });
     }
     return (
@@ -18,11 +21,11 @@ export default function NewComment({ postId }) {
             </div>
             <div className="post-project-fields">
 
-                <form onSubmit={onSubmitComment} method="post">
+                <form onSubmit={ onSubmitComment } method="post">
                     <div class="row">
                         <div class="col-lg-12">
 
-                            <textarea name="body" onChange={handleChange} placeholder="Enter your Comment details here">
+                            <textarea name="body" onChange={ handleChange } placeholder="Enter your Comment details here">
 
                             </textarea>
 
