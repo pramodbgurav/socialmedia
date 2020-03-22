@@ -1,9 +1,9 @@
 import React, { useState, useContext } from 'react';
-import Usercontext from './Context';
+import Usercontext from "./Context";
 
 export default function Post ()
 {
-    const methods = useContext(Usercontext);
+    const postContext = useContext(Usercontext);
     const [ post, addPost ] = useState(
         {
             title: "",
@@ -25,7 +25,7 @@ export default function Post ()
     function onSubmit (e)
     {
         e.preventDefault();
-        methods.onAddPost(post);
+        postContext.onAddPost(post);
     }
 
     return (

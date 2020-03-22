@@ -1,14 +1,14 @@
 import React, { useContext } from 'react';
 
-import UserContext from './Context';
 import EachComment from './Comment'
 
+import Usercontext from "./Context";
 
 
 
 export default function AllComments ({ postId })
 {
-    const { comments } = useContext(UserContext);
+    const { comments } = useContext(Usercontext);
 
     let vComments = comments.filter((comment) =>
     {

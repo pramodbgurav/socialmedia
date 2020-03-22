@@ -29,34 +29,43 @@ export default function User ()
 
     }
     return (
-        <div >
-            <div className="container">
-                <div className="row">
-                    <div className="Absolute-Center is-Responsive">
-                        <div id="logo-container"></div>
-                        <div className="col-sm-12 col-md-10 col-md-offset-1">
-                            <form onSubmit={ onSubmit } id="loginForm" method="post">
-                                <div className="form-group input-group">
-                                    <label>Choose User:</label>
-                                    <select type="combobox" id="user" onChange={ handleChange }>
-                                        <option value="0">Select User</option>
-                                        <option value="1">Pramod</option>
-                                        <option value="2">Shivraj</option>
-                                        <option value="3">Anushree</option>
-                                        <option value="4">Dhruv</option>
-                                        <option value="5">Sandip</option>
-                                    </select>
-                                </div>
+        <React.Fragment>
+            <div class="user-picy">
 
-                                <div className="form-group">
-                                    <button type="submit" className="btn btn-def btn-block">Set User</button>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
+            <div className="post-project-fields">
+
+                <form onSubmit={ onSubmit } id="loginForm" method="post">
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-4">
+
+                            <label>
+                                <label>Choose User:</label>
+                            </label>
+
+                            <select onChange={ handleChange }>
+                                <option value="0">Select User</option>
+                                <option value="1">Pramod</option>
+                                <option value="2">Shivraj</option>
+                                <option value="3">Anushree</option>
+                                <option value="4">Dhruv</option>
+                                <option value="5">Sandip</option>
+                            </select>
+
+
+
+
+                        </div>
+
+                    </div>
+                    <div class="post-st">
+                        <button class="btn btn-primary" type="submit">set User</button>
+                    </div>
+                </form>
+            </div>
+
+
+        </React.Fragment>
     )
 }

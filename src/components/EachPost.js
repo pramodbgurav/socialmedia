@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
-import Post from './post';
 import AllComments from './allComments';
 import NewComment from './newComment';
 // import { NavLink } from 'react-router-dom';
 
 
-export default function EachPost({ post }) {
-    const [comment, showComments] = useState(false);
+export default function EachPost ({ post })
+{
+    const [ comment, showComments ] = useState(false);
 
-    const setComment = () => {
+    const setComment = () =>
+    {
         showComments(!comment)
     }
 
-    const displayComment = () => {
-        if (comment) {
+    const displayComment = () =>
+    {
+        if (comment)
+        {
             return <div>
-                <NewComment postId={post.id} />
-                <AllComments postId={post.id} />
+                <NewComment postId={ post.id } />
+                <AllComments postId={ post.id } />
             </div>
         }
     }
@@ -26,7 +29,7 @@ export default function EachPost({ post }) {
                 <div class="usy-dt">
                     <img src="images/resources/us-pic.png" alt="" />
                     <div class="usy-name">
-                        <h3>{post.title}</h3>
+                        <h3>{ post.title }</h3>
                         <span><img src="images/clock.png" alt="" />3 min ago</span>
                     </div>
                 </div>
@@ -40,19 +43,19 @@ export default function EachPost({ post }) {
 
             </div>
             <div class="job_descp">
-                <p>{post.body}</p>
+                <p>{ post.body }</p>
             </div>
             <div class="job-status-bar">
 
                 <ul class="like-com">
 
 
-                    <label class="fas fa-comment-alt" onClick={() => { setComment() }}>Comments</label>
+                    <label class="fas fa-comment-alt" onClick={ () => { setComment() } }>Comments</label>
 
                 </ul>
             </div>
 
-            {displayComment()}
+            { displayComment() }
         </div >
 
     )
