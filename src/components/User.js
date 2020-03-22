@@ -7,17 +7,16 @@ export default function User ()
         1: "Pramod Gurav",
         2: "Shivraj Sawant",
         3: "Anushree Nair",
-        4: "Dhruv Diwidi",
+        4: "Dhruv Dwivedi",
         5: "Sandip Hirwale",
 
     }
+
     const [ newUser, setNewUser ] = useState({ id: "", name: "" });
     const { onFormSubmitUser } = useContext(UserContext);
     function onSubmit (e)
     {
         e.preventDefault();
-        console.log("in on submit")
-        console.log(e);
         onFormSubmitUser(newUser)
     }
     function handleChange (evt)
@@ -30,7 +29,7 @@ export default function User ()
 
     }
     return (
-        <div className="body">
+        <div >
             <div className="container">
                 <div className="row">
                     <div className="Absolute-Center is-Responsive">

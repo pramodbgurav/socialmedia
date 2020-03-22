@@ -25,11 +25,11 @@ export default function Leftpanel ()
 					<ul className="user-fw-status">
 						<li>
 							<h4>Posts</h4>
-							<span>{ methods.postCount }</span>
+							<span>{ methods.posts.length }</span>
 						</li>
 						<li>
 							<h4>Comments</h4>
-							<span>{ methods.commentCount }</span>
+							<span>{ methods.comments.length }</span>
 						</li>
 						<li>
 							<a href="my-profile.html" title="">View Profile</a>

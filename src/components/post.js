@@ -11,16 +11,10 @@ export default function Post ()
         }
     );
 
-    console.log("methods");
-    console.log(methods);
-
-
     function handleChange (evt)
     {
 
-        console.log(evt)
         const value = evt.target.value;
-        console.log(value);
         addPost({
             ...post,
             [ evt.target.name ]: value
@@ -31,8 +25,6 @@ export default function Post ()
     function onSubmit (e)
     {
         e.preventDefault();
-        console.log("in on submit")
-        console.log(e);
         methods.onAddPost(post);
     }
 

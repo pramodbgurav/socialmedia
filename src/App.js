@@ -79,12 +79,10 @@ function App ()
 
   function loadPost ()
   {
-    if (user.id !== '' && user.id !== 0)
+    if (loggedUser.id !== 0)
     {
       getPostData(user.id);
-      setPostCount(posts.length)
       getCommentsData();
-      setCommentsCount(comments.length)
 
       return (
         <React.Fragment>
@@ -104,16 +102,19 @@ function App ()
       )
     }
   }
+
+  let loggedUser = {
+    id: ''
+  };
   function onFormSubmitUser (userData)
   {
+    loggedUser = userData;
     setUser(userData);
   }
 
 
   function onAddPost (postdata)
   {
-    console.log("in add post")
-    console.log(postdata);
     let postedData = {
       "id": +new Date(),
       "title": postdata.title,
@@ -128,7 +129,6 @@ function App ()
 
   function onFormSubmitComment (newComment)
   {
-    console.log(newComment);
     let postedData = {
       "id": +new Date(),
       "body": newComment.body,
@@ -141,14 +141,14 @@ function App ()
   }
 
   const methods = {
-    todoListDataFromApp: [],
     onAddPost,
     comments: comments,
     postCount: postCount,
     commentCount: commentCount,
     onFormSubmitComment,
     onFormSubmitUser,
-    user
+    user,
+    posts
   }
 
   return (
