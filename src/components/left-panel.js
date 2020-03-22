@@ -14,11 +14,11 @@ export default function Leftpanel ()
 					<div className="user-profile">
 						<div className="username-dt">
 							<div className="usr-pic">
-								<img src="images/user.png" alt="" />
+								<img src={ `../images/${ methods.user.id }.png` } alt="" />
 							</div>
 						</div>
 						<div className="user-specs">
-							<h3>Pramod Gurav</h3>
+							<h3>{ methods.user.name }</h3>
 							<span>Developer</span>
 						</div>
 					</div>

@@ -14,6 +14,7 @@ import Maincomponent from './components/main-component';
 
 
 import UserContext from './components/Context';
+import User from './components/User';
 
 
 
@@ -21,6 +22,7 @@ import UserContext from './components/Context';
 function App ()
 {
   const [ posts, setPosts ] = useState([]);
+  const [ user, setUser ] = useState({ id: '', name: '' })
   const [ postCount, setPostCount ] = useState(0);
   const [ comments, setComments ] = useState([]);
   const [ commentCount, setCommentsCount ] = useState(0)
@@ -35,37 +37,76 @@ function App ()
 
 
 
+  let validPostIds = [];
 
-  useEffect(() =>
+  function getCommentsData ()
   {
-
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(data => setPosts(data))
-
-
-  }, [])
-
-  useEffect(() =>
-  {
-
     fetch('https://jsonplaceholder.typicode.com/comments')
       .then(response => response.json())
-      .then(data => setComments(data))
+      .then(data =>
+      {
+        let vComments = data.filter((vComamnt) =>
+        {
+          if (validPostIds.includes(vComamnt.postId))
+          {
+            return vComamnt;
+          }
+        })
+        setComments(vComments);
+      }
+      )
+  }
+
+  function getPostData (userID)
+  {
+    fetch('https://jsonplaceholder.typicode.com/posts')
+      .then(response => response.json())
+      .then(data =>
+      {
+        let vData = data.filter((vPost) =>
+        {
+          if (vPost.userId == userID)
+          {
+            validPostIds.push(vPost.id);
+            return vPost;
+          }
+        })
+        setPosts(vData)
+      })
+  }
 
 
-  }, [])
 
   function loadPost ()
   {
-    setPostCount(posts.length)
-    setCommentsCount(comments.length)
-    return (
+    if (user.id !== '' && user.id !== 0)
+    {
+      getPostData(user.id);
+      setPostCount(posts.length)
+      getCommentsData();
+      setCommentsCount(comments.length)
 
-      <main>
-        <Maincomponent allPosts={ posts } postCount={ postCount }></Maincomponent>
-      </main>
-    )
+      return (
+        <React.Fragment>
+          <Nav />
+          <main>
+            <Maincomponent allPosts={ posts } ></Maincomponent>
+          </main>
+        </React.Fragment>
+      )
+
+    } else
+    {
+      return (
+
+
+        <User className="App" />
+      )
+    }
+  }
+  function onFormSubmitUser (userData)
+  {
+    setUser(userData);
   }
 
 
@@ -105,7 +146,9 @@ function App ()
     comments: comments,
     postCount: postCount,
     commentCount: commentCount,
-    onFormSubmitComment
+    onFormSubmitComment,
+    onFormSubmitUser,
+    user
   }
 
   return (
@@ -113,7 +156,7 @@ function App ()
       <UserContext.Provider value={ methods }>
         <Router>
           <div className="container"></div>
-          <Nav />
+
           <Route exact path="/" render={ loadPost } />
         </Router>
       </UserContext.Provider>
