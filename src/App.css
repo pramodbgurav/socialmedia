@@ -6913,5 +6913,17 @@ border: 1px solid #005386 !important;
 nav{
 	padding-top: 5px;
 }
- 
+
+.appHeading{
+	text-align: center;
+    padding: 100px;
+    font-size: 46px;
+}
+.proj-fields-home{
+	padding-left: 37%; 
+    box-shadow: 0 0 black;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    box-shadow: 5px 5px #ccc;
+}
 /* new style end */
