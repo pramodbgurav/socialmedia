@@ -57,7 +57,7 @@ export default function Maincomponent ({ allPosts })
             }
             )
 
-    }, [])
+    }, validPostIds)
     function onAddPost (postdata)
     {
         let postedData = {
